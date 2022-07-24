@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import "./todos.scss";
 
 class Todos extends Component {
+  getCurrentDate(separator = " / ") {
+    let newDate = new Date();
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+
+    return `${year}${separator}${
+      month < 10 ? `0${month}` : `${month}`
+    }${separator}${date}`;
+  }
+
   state = {
     todos: [
       {
@@ -59,16 +70,6 @@ class Todos extends Component {
     render: "Runnning",
   };
 
-  getCurrentDate(separator = " / ") {
-    let newDate = new Date();
-    let date = newDate.getDate();
-    let month = newDate.getMonth() + 1;
-    let year = newDate.getFullYear();
-
-    return `${year}${separator}${
-      month < 10 ? `0${month}` : `${month}`
-    }${separator}${date}`;
-  }
   currentTime() {
     let today = new Date(),
       time =
@@ -110,12 +111,12 @@ class Todos extends Component {
               }}
               key={this.randomKey()}
             />
-            <h2>{item.title}</h2>
+              <h2>{item.title}</h2>
+          </div>
             <div>
               <p>{item.data}</p>
               <p>{item.registerTime}</p>
             </div>
-          </div>
           <button
             className="progress-btn"
             style={{
@@ -144,7 +145,6 @@ class Todos extends Component {
         data: this.getCurrentDate(),
         status: "Running",
         isCheck: false,
-        registerTime: this.currentTime(),
       };
       console.log(this.currentTime());
       todos.push(todo);
@@ -227,7 +227,6 @@ class Todos extends Component {
           />
           {this.renderTodos(this.state.render, this.state.typeProgress)}
         </div>
-        <br />
         <h2>Tugadi</h2>;
       </div>
     );

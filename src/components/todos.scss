@@ -80,13 +80,16 @@
         h2 {
           font-size: 35px;
           font-weight: 500;
+          overflow: hidden;
+          width: 750px;
+          text-align: start;
         }
-        p {
-          font-size: 24px;
-          margin-top: 10px;
-          opacity: 0.4;
-          font-weight: 600;
-        }
+      }
+      p {
+        font-size: 24px;
+        margin-top: 10px;
+        opacity: 0.4;
+        font-weight: 600;
       }
       button {
         // background-color: #28a745;
