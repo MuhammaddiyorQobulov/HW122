@@ -111,12 +111,12 @@ class Todos extends Component {
               }}
               key={this.randomKey()}
             />
-              <h2>{item.title}</h2>
+            <h2>{item.title}</h2>
           </div>
-            <div>
-              <p>{item.data}</p>
-              <p>{item.registerTime}</p>
-            </div>
+          <div>
+            <p>{item.data}</p>
+            <p>{item.registerTime}</p>
+          </div>
           <button
             className="progress-btn"
             style={{
@@ -145,6 +145,7 @@ class Todos extends Component {
         data: this.getCurrentDate(),
         status: "Running",
         isCheck: false,
+        registerTime: this.currentTime(),
       };
       console.log(this.currentTime());
       todos.push(todo);
