@@ -2,47 +2,58 @@ import React, { Component } from "react";
 import "./todos.scss";
 
 class Todos extends Component {
+  getCurrentDate(separator = " / ") {
+    let newDate = new Date();
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+
+    return `${year}${separator}${
+      month < 10 ? `0${month}` : `${month}`
+    }${separator}${date}`;
+  }
+
   state = {
     todos: [
       {
         title: "New Projects",
-        data: "Sun Jul 25 2022",
+        data: this.getCurrentDate(),
         status: "Running",
         isCheck: false,
       },
       {
         title: "Complete",
-        data: "Sun Jul 25 2022",
+        data: this.getCurrentDate(),
         status: "Completed",
         isCheck: false,
       },
       {
         title: "Afzal Bidhan",
-        data: "Sun Jul 25 2022",
+        data: this.getCurrentDate(),
         status: "Running",
         isCheck: false,
       },
       {
         title: "Your Todos",
-        data: "Sun Jul 25 2022",
+        data: this.getCurrentDate(),
         status: "Running",
         isCheck: false,
       },
       {
         title: "Hello World",
-        data: "Sun Jul 25 2022",
+        data: this.getCurrentDate(),
         status: "Completed",
         isCheck: false,
       },
       {
         title: "Wake Up Early",
-        data: "Sun Jul 25 2022",
+        data: this.getCurrentDate(),
         status: "Completed",
         isCheck: false,
       },
       {
         title: "Go to lesson on time",
-        data: "Sun Jul 25 2022",
+        data: this.getCurrentDate(),
         status: "Running",
         isCheck: false,
       },
@@ -98,7 +109,7 @@ class Todos extends Component {
             disabled={item.status === "Completed"}
             onClick={() => {
               item.status = "Completed";
-              this.setState(this.state)
+              this.setState(this.state);
             }}
           >
             {item.status}
@@ -109,6 +120,21 @@ class Todos extends Component {
       )
     );
   }
+
+  addTodo = (event) => {
+    const todos = this.state.todos;
+    if (event.key === "Enter" && event.target.value != "") {
+      const todo = {
+        title: event.target.value,
+        data: this.getCurrentDate(),
+        status: "Running",
+        isCheck: false,
+      };
+      todos.push(todo);
+      event.target.value = "";
+    }
+    this.setState({ todos });
+  };
 
   render() {
     return (
@@ -176,6 +202,12 @@ class Todos extends Component {
           </div>
         </div>
         <div className="todos-list">
+          <input
+            type="text"
+            onKeyPress={this.addTodo}
+            className="add-todo"
+            placeholder="Add Todo ..."
+          />
           {this.renderTodos(this.state.render, this.state.typeProgress)}
         </div>
         <h2>Tugadi</h2>;
