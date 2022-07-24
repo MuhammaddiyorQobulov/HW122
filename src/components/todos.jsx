@@ -2,6 +2,63 @@ import React, { Component } from "react";
 import "./todos.scss";
 
 class Todos extends Component {
+  state = {
+    todos: [
+      {
+        title: "New Projects",
+        data: this.getCurrentDate(),
+        status: "Running",
+        isCheck: false,
+        registerTime: this.currentTime(),
+      },
+      {
+        title: "Complete",
+        data: this.getCurrentDate(),
+        status: "Completed",
+        isCheck: false,
+        registerTime: this.currentTime(),
+      },
+      {
+        title: "Afzal Bidhan",
+        data: this.getCurrentDate(),
+        status: "Running",
+        isCheck: false,
+        registerTime: this.currentTime(),
+      },
+      {
+        title: "Your Todos",
+        data: this.getCurrentDate(),
+        status: "Running",
+        isCheck: false,
+        registerTime: this.currentTime(),
+      },
+      {
+        title: "Hello World",
+        data: this.getCurrentDate(),
+        status: "Completed",
+        isCheck: false,
+        registerTime: this.currentTime(),
+      },
+      {
+        title: "Wake Up Early",
+        data: this.getCurrentDate(),
+        status: "Completed",
+        isCheck: false,
+        registerTime: this.currentTime(),
+      },
+      {
+        title: "Go to lesson on time",
+        data: this.getCurrentDate(),
+        status: "Running",
+        isCheck: false,
+        registerTime: this.currentTime(),
+      },
+    ],
+    typeView: true,
+    typeProgress: true,
+    render: "Runnning",
+  };
+
   getCurrentDate(separator = " / ") {
     let newDate = new Date();
     let date = newDate.getDate();
@@ -12,56 +69,13 @@ class Todos extends Component {
       month < 10 ? `0${month}` : `${month}`
     }${separator}${date}`;
   }
+  currentTime() {
+    let today = new Date(),
+      time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    return time;
+  }
 
-  state = {
-    todos: [
-      {
-        title: "New Projects",
-        data: this.getCurrentDate(),
-        status: "Running",
-        isCheck: false,
-      },
-      {
-        title: "Complete",
-        data: this.getCurrentDate(),
-        status: "Completed",
-        isCheck: false,
-      },
-      {
-        title: "Afzal Bidhan",
-        data: this.getCurrentDate(),
-        status: "Running",
-        isCheck: false,
-      },
-      {
-        title: "Your Todos",
-        data: this.getCurrentDate(),
-        status: "Running",
-        isCheck: false,
-      },
-      {
-        title: "Hello World",
-        data: this.getCurrentDate(),
-        status: "Completed",
-        isCheck: false,
-      },
-      {
-        title: "Wake Up Early",
-        data: this.getCurrentDate(),
-        status: "Completed",
-        isCheck: false,
-      },
-      {
-        title: "Go to lesson on time",
-        data: this.getCurrentDate(),
-        status: "Running",
-        isCheck: false,
-      },
-    ],
-    typeView: true,
-    typeProgress: true,
-    render: "Runnning",
-  };
   controllers = {
     view: {
       typeView: [
@@ -96,9 +110,10 @@ class Todos extends Component {
               }}
               key={this.randomKey()}
             />
+            <h2>{item.title}</h2>
             <div>
-              <h2>{item.title}</h2>
               <p>{item.data}</p>
+              <p>{item.registerTime}</p>
             </div>
           </div>
           <button
@@ -129,7 +144,9 @@ class Todos extends Component {
         data: this.getCurrentDate(),
         status: "Running",
         isCheck: false,
+        registerTime: this.currentTime(),
       };
+      console.log(this.currentTime());
       todos.push(todo);
       event.target.value = "";
     }
@@ -210,6 +227,7 @@ class Todos extends Component {
           />
           {this.renderTodos(this.state.render, this.state.typeProgress)}
         </div>
+        <br />
         <h2>Tugadi</h2>;
       </div>
     );
